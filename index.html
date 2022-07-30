@@ -1,61 +1,57 @@
-    <!DOCTYPE html>
-    <html lang="de">
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Upfuck</title>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./assets/css/style.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+
+<title>📝 Steuern</title>
+</head>
+<body>
 
     <main>
-        <h1>Einkommenssteuer-Rechner 🧮</h1>
-        <section class="form">
+    
+        <section class="dieForm">
             <fieldset>
                 <form action="" onsubmit="return false">
-                    <article>
-                        <div class="styling">
-                            <label class="label" for="">Steuerjahr</label>
-                            <select name="jahr" id="steuerjahr">
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                            </select>
-                        </div>
-                        <div class="styling ">
-                            <label class="label" for="number">Zu versteuerndes Einkommen</label>
+                    <h1>Einkommenssteuer-Rechner 🧮</h1>
+                    <div class="styling">
+                        <label class="label" for="">Steuerjahr</label>
+                        <select name="jahr" id="steuerjahr">
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                    <div class="styling ">
+                        <label class="label" for="number">Zu versteuerndes Einkommen</label>
+                        <input type="number"id="einkommen" placeholder="0 € ">
+                    </div>
 
-                            <input type="number"id="einkommen" placeholder="0 € ">
-                        </div>
-
-                        <div class="styling ">
-                            <label class="label" for="text">Kirchensteuer</label>
-                            <select name="jahr" id="kirchensteuer">
-                                <option value="0.08">8%</option>
-                                <option value="0.09">9%</option>
-                            </select>
-                        </div>
+                    <div class="styling ">
+                        <label class="label" for="text">Kirchensteuer 9%</label>
+                        <input class="checkbox" type="checkbox" id="kirchensteuer">
                         
+                    </div>
+                    
 
-                        <div class="styling ">
-                            <label class="label" for="radio">Ehegattensplitting</label>
+                    <div class="styling ">
+                        <label class="label" for="radio">Ehegattensplitting</label>
 
-                            <div class="splitting">
-                                <label for="radio">Ja</label>
-                                <input type="radio" name="radio" id="radio_ja">
-                                <label for="radio">Nein</label>
-                                <input type="radio" name="radio" id="radio_nein">
-                            </div>
+                        <div class="splitting">
+                            <label for="radio">Ja</label>
+                            <input type="radio" name="radio" id="radio_ja">
+                            <label for="radio">Nein</label>
+                            <input type="radio" name="radio" id="radio_nein">
                         </div>
+                    </div>
 
-                        <div class="Datenschutz">
-                            <button onclick="berechnen()" class="btn">Berechnen</button>
-                        </div>
-                        <div class="ergebnis"></div>
-                    </article>
-
+                    <div class="datenschutz">
+                        <button onclick="berechnen()" class="btn">Berechnen</button>
+                    </div>
+                    <div class="ergebnis"></div>
                 </form>
             </fieldset>
 
@@ -63,5 +59,5 @@
     </main>
 
     <script src="./assets/js/main.js"></script>
-    </body>
-    </html>
+</body>
+</html>

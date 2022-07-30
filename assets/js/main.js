@@ -1,45 +1,62 @@
-console.log('it works')
 
 
-let steuerjahr = document.getElementById('steuerjahr')
-console.log(steuerjahr)
+let steuerjahr = document.querySelector('#steuerjahr')
+let einkommen = document.querySelector('#einkommen')
+let kirche = document.querySelector('#kirchensteuer')
+let ehegattenSplitting = document.querySelector('#radio_ja')
+let ergebnis = document.querySelector('.ergebnis')
 
-let einkommen = document.getElementById('einkommen')
-let kirchensteuer = document.getElementById('kirchensteuer')
-let ja = document.getElementById('radio_ja')
-let nein = document.getElementById('radio_nein')
+// Variablen eindeutig/ ausdrucksstark benennen 
 
+function addChurchTax (income) {  // Argument wird in der berechnen Funktion aufgerufen
+    const tax = income * 0.09
+    console.log(income + tax)
+    return income + tax
+}
+
+//addChurchTax(500)
+//addChurchTax(1337)
+
+//const eineNummer = 500
+//addChurchTax(eineNummer)
+
+function partner (incomeOne, incomeTwo) {  // Argument wird in der berechnen Funktion aufgerufen
+    console.log(incomeOne + incomeTwo)
+    return (incomeOne + incomeTwo) / 2
+}
+
+function writeResultToFild (result){ // Argument wird in der berechnen Funktion aufgerufen
+    console.log(ergebnis)
+    ergebnis.innerHTML = `<p> ${Math.floor(result)} € </p>`
+}
 
 function berechnen() {
+    let income = Number(einkommen.value) //let income ist die Zahl, die in dem Input feld steht (.value) // wird oben einmal in Zahl umgewandelt
     console.log(steuerjahr.value) // String 
     console.log(Number(einkommen.value)) // Number
-    if (Number(einkommen.value)<= 9744){
+    if (income <= 9744){
         console.log('Fall 1')
-    } else if(Number(einkommen.value) >= 9745 &&    (Number(einkommen.value) <= 14753)){
+    } else if(income >= 9745 && (income <= 14753)){
         console.log('Fall 2')
-    } else if(Number(einkommen.value) >= 14754 && (Number(einkommen.value) <= 57918)){
+    } else if(income >= 14754 && (income <= 57918)){
         console.log('fall 3')
-    } else if(Number(einkommen.value) >= 57919 && (Number(einkommen.value) <= 274912)) {
+    } else if(income >= 57919 && (income <= 274912)){
         console.log('fall 4')
-    } else if (Number(einkommen.value) >= 274913){
+    } else if (income >= 274913){
         console.log('Fall 5')
     }
-    
-/*  console.log(kirchensteuer.value)
-    if (Number(kirchensteuer.value) =){
-        console.log(8*100)
-    } */
 
+    if (kirche.checked == true){
+        console.log('kirchensteuer')
+        // einkommen.value = 500
+        income = addChurchTax(income) // Argument
+        // einkommen.value = 545
+    }
 
-    console.log(ja.checked)
-    if (radio_ja.checked){
-        console.log('Ja')
-        return 1
+    if (ehegattenSplitting.checked) {
+        const incomeB = Number(prompt('Bitte Partnergehalt eingeben'))
+        income = partner(income, incomeB)
     }
-    
-    console.log(nein.checked)
-    if (radio_nein.checked){
-        console.log('Ja')
-        return 2
-    }
-}
+
+    writeResultToFild(income) 
+} 
