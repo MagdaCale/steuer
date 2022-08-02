@@ -1,5 +1,4 @@
 
-
 let steuerjahr = document.querySelector('#steuerjahr')
 let einkommen = document.querySelector('#einkommen')
 let kirche = document.querySelector('#kirchensteuer')
@@ -11,45 +10,47 @@ let ergebnis = document.querySelector('.ergebnis')
 function addChurchTax (income) {  // Argument wird in der berechnen Funktion aufgerufen
     const tax = income * 0.09
     console.log(income + tax)
-    return income + tax
+    return tax
 }
-
-//addChurchTax(500)
-//addChurchTax(1337)
-
-//const eineNummer = 500
-//addChurchTax(eineNummer)
 
 function partner (incomeOne, incomeTwo) {  // Argument wird in der berechnen Funktion aufgerufen
     console.log(incomeOne + incomeTwo)
     return (incomeOne + incomeTwo) / 2
 }
 
-function writeResultToFild (result){ // Argument wird in der berechnen Funktion aufgerufen
+function writeResultToFild (result, tax, church){ // Argument wird in der berechnen Funktion aufgerufen
     console.log(ergebnis)
-    ergebnis.innerHTML = `<p> ${Math.floor(result)} € </p>`
+    ergebnis.innerHTML = `<p> Einkommen: ${toRightFormat(result-tax-church)} € Steuern: ${toRightFormat(tax)} € Kirche: ${toRightFormat(church)} €</p>`
+}
+
+function toRightFormat (number){
+    return Number (number.toFixed(2)).toLocaleString()
 }
 
 function berechnen() {
     let income = Number(einkommen.value) //let income ist die Zahl, die in dem Input feld steht (.value) // wird oben einmal in Zahl umgewandelt
     console.log(steuerjahr.value) // String 
     console.log(Number(einkommen.value)) // Number
+    let tax = 0 // ist in der Aufgabe Est
+    let churchTax = 0
+
     if (income <= 9744){
-        console.log('Fall 1')
     } else if(income >= 9745 && (income <= 14753)){
-        console.log('Fall 2')
+        let y = (income-9744)/10000
+        tax = (995.21 * y + 1400) *y
     } else if(income >= 14754 && (income <= 57918)){
-        console.log('fall 3')
+        let z = (income-14753)/10000
+        tax = (208.85 * z + 2397) *z+950.96
     } else if(income >= 57919 && (income <= 274912)){
-        console.log('fall 4')
+        tax = 0.42 * income - 9136.63
     } else if (income >= 274913){
-        console.log('Fall 5')
+        tax = 0.45 * income - 17374.99
     }
 
     if (kirche.checked == true){
         console.log('kirchensteuer')
         // einkommen.value = 500
-        income = addChurchTax(income) // Argument
+        churchTax = addChurchTax(income) // Argument
         // einkommen.value = 545
     }
 
@@ -58,5 +59,5 @@ function berechnen() {
         income = partner(income, incomeB)
     }
 
-    writeResultToFild(income) 
+    writeResultToFild(income, tax, churchTax) 
 } 
